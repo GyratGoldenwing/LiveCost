@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>LiveCost Prototype Documentation</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">LiveCost Prototype Documentation</h1>
+</header>
+<h1 id="livecost-project-prototype-documentation">LiveCost: Project
+Prototype Documentation</h1>
+<p><strong>Author:</strong> Jeremiah Williams <strong>Course:</strong>
+Project &amp; Portfolio IV - Full Sail University <strong>Date:</strong>
+December 2025</p>
+<hr />
+<h2 id="similar-products-research">Similar Products Research</h2>
+<h3 id="numbeo-numbeo.com">1. Numbeo (numbeo.com)</h3>
+<p><strong>Strengths:</strong> - Comprehensive cost of living database
+for cities worldwide - User-contributed data provides real-world
+accuracy - Comparison tools for multiple cities</p>
+<p><strong>Weaknesses:</strong> - No personalization based on lifestyle
+choices - Interface is data-heavy and overwhelming - No salary-based
+affordability analysis</p>
+<p><strong>Features to Borrow:</strong> - City comparison capability -
+Category-based cost breakdown structure</p>
+<h3 id="nerdwallet-cost-of-living-calculator">2. NerdWallet Cost of
+Living Calculator</h3>
+<p><strong>Strengths:</strong> - Clean, modern interface - Salary
+adjustment recommendations - Mobile-responsive design</p>
+<p><strong>Weaknesses:</strong> - Limited lifestyle customization (only
+basic inputs) - No visualization of cost breakdown - Single city
+analysis only</p>
+<p><strong>Features to Borrow:</strong> - Salary-based affordability
+messaging - Clean form design patterns</p>
+<h3 id="payscale-cost-of-living-calculator">3. PayScale Cost of Living
+Calculator</h3>
+<p><strong>Strengths:</strong> - Employer-focused salary data
+integration - Geographic comparison features</p>
+<p><strong>Weaknesses:</strong> - Focused on relocation rather than
+lifestyle planning - No interactive map visualization - Limited
+granularity in expense categories</p>
+<p><strong>Features to Borrow:</strong> - Percentage-based affordability
+thresholds</p>
+<hr />
+<h2 id="livecost-improvements-over-existing-products">LiveCost
+Improvements Over Existing Products</h2>
+<ol type="1">
+<li><strong>Lifestyle-Based Personalization:</strong> 8 detailed
+questions capture individual spending patterns rather than using city
+averages</li>
+<li><strong>Visual Affordability Map:</strong> Interactive US map with
+color-coded markers shows at-a-glance affordability</li>
+<li><strong>ML-Powered Predictions:</strong> Machine learning model
+adapts predictions based on combined lifestyle factors</li>
+<li><strong>Comprehensive Visualization:</strong> Bar chart breakdown
+makes expense distribution immediately understandable</li>
+<li><strong>Real-Time Calculation:</strong> Instant feedback as users
+adjust preferences</li>
+</ol>
+<hr />
+<h2 id="gui-feature-list">GUI Feature List</h2>
+<h3 id="primary-features-must-have">Primary Features (Must Have)</h3>
+<table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 32%" />
+<col style="width: 25%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+<th>Priority</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>City Selection Dropdown</td>
+<td>Select from 10 major US cities</td>
+<td>P1</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Apartment Size Selector</td>
+<td>Studio, 1BR, 2BR, 3BR+ options</td>
+<td>P1</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Dining Frequency Slider</td>
+<td>0-15 times per week</td>
+<td>P1</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Vehicle Type Radio Buttons</td>
+<td>Compact, Sedan, SUV, Electric</td>
+<td>P1</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Commute Distance Input</td>
+<td>Numeric input for daily miles</td>
+<td>P1</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Entertainment Budget Dropdown</td>
+<td>Low, Moderate, High tiers</td>
+<td>P1</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Grocery Habits Dropdown</td>
+<td>Budget, Moderate, Premium stores</td>
+<td>P1</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Fitness Routine Radio</td>
+<td>None, Home, Gym options</td>
+<td>P1</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Healthcare Needs Dropdown</td>
+<td>Minimal, Standard, Comprehensive</td>
+<td>P1</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Salary Input Field</td>
+<td>Annual salary for affordability calc</td>
+<td>P1</td>
+<td>NerdWallet</td>
+</tr>
+<tr>
+<td>Calculate Button</td>
+<td>Triggers prediction API call</td>
+<td>P1</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Total Cost Display</td>
+<td>Large, prominent monthly estimate</td>
+<td>P1</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Cost Breakdown Table</td>
+<td>8-category itemized list</td>
+<td>P1</td>
+<td>Numbeo</td>
+</tr>
+<tr>
+<td>Bar Chart Visualization</td>
+<td>Visual cost distribution</td>
+<td>P1</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Affordability Map</td>
+<td>US map with city markers</td>
+<td>P1</td>
+<td>Original</td>
+</tr>
+</tbody>
+</table>
+<h3 id="secondary-features-should-have">Secondary Features (Should
+Have)</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+<th>Priority</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Confidence Badge</td>
+<td>Shows prediction reliability</td>
+<td>P2</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Input Summary Chips</td>
+<td>Display entered preferences</td>
+<td>P2</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Map Legend</td>
+<td>Color key for affordability</td>
+<td>P2</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Tooltip Explanations</td>
+<td>Hover help for form fields</td>
+<td>P2</td>
+<td>NerdWallet</td>
+</tr>
+<tr>
+<td>Loading States</td>
+<td>Spinner during API calls</td>
+<td>P2</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Error Messages</td>
+<td>User-friendly error display</td>
+<td>P2</td>
+<td>Original</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tertiary-features-nice-to-have---future">Tertiary Features (Nice
+to Have - Future)</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+<th>Priority</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>City Comparison</td>
+<td>Side-by-side analysis</td>
+<td>P3</td>
+<td>Numbeo</td>
+</tr>
+<tr>
+<td>PDF Export</td>
+<td>Download report</td>
+<td>P3</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Query History</td>
+<td>Past calculations</td>
+<td>P3</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>User Accounts</td>
+<td>Save preferences</td>
+<td>P3</td>
+<td>Original</td>
+</tr>
+<tr>
+<td>Dark Mode</td>
+<td>Theme toggle</td>
+<td>P3</td>
+<td>Common</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="prototype-implementation">Prototype Implementation</h2>
+<h3 id="current-prototype-capabilities">Current Prototype
+Capabilities</h3>
+<p>The functional prototype implements all Primary (P1) and Secondary
+(P2) features:</p>
+<p>✅ Complete 8-question lifestyle form ✅ City and salary inputs ✅
+Real-time ML predictions via API ✅ Total cost hero display with
+confidence badge ✅ Cost breakdown table with 8 categories ✅
+Interactive bar chart visualization ✅ US affordability map with
+color-coded markers ✅ Responsive two-column layout ✅ Loading states
+and error handling ✅ Tooltips and helper text</p>
+<h3 id="prototype-link">Prototype Link</h3>
+<p><strong>Figma Prototype:</strong> [To be added - create interactive
+Figma mockup]</p>
+<p><strong>Live Application:</strong> http://localhost:3000 (when
+running locally)</p>
+<p><strong>GitHub Repository:</strong>
+https://github.com/GyratGoldenwing/LiveCost</p>
+<hr />
+<h2 id="uxui-design-decisions">UX/UI Design Decisions</h2>
+<h3 id="layout">Layout</h3>
+<ul>
+<li>Two-column grid on desktop: Form (left) | Results (right)</li>
+<li>Single column on mobile with stacked sections</li>
+<li>Map spans full width below the main grid</li>
+</ul>
+<h3 id="color-palette">Color Palette</h3>
+<ul>
+<li>Primary: #2563eb (Blue) - Actions, headers, branding</li>
+<li>Secondary: #10b981 (Green) - Money/success indicators</li>
+<li>Affordability: Green (#22c55e) &lt; 30%, Yellow (#eab308) 30-40%,
+Red (#ef4444) &gt; 40%</li>
+</ul>
+<h3 id="typography">Typography</h3>
+<ul>
+<li>Font: Inter (clean, modern, highly legible)</li>
+<li>Hierarchy: h4 for title, h5 for section headers, body for
+content</li>
+</ul>
+<h3 id="interaction-patterns">Interaction Patterns</h3>
+<ul>
+<li>Immediate validation feedback</li>
+<li>Disabled submit button during loading</li>
+<li>Smooth transitions between empty/loading/results states</li>
+<li>Hover tooltips for additional context</li>
+</ul>
+<hr />
+<h2 id="platform-considerations">Platform Considerations</h2>
+<p>The application is built as a responsive web application targeting: -
+<strong>Primary:</strong> Desktop browsers (Chrome, Firefox, Safari,
+Edge) - <strong>Secondary:</strong> Tablet browsers -
+<strong>Tertiary:</strong> Mobile browsers (simplified layout)</p>
+<p>Material-UI’s responsive breakpoints handle layout adaptation
+automatically.</p>
+</body>
+</html>

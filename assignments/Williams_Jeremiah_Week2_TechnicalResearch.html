@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>LiveCost Technical Research</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">LiveCost Technical Research</h1>
+</header>
+<h1 id="livecost-technical-research-development-document">LiveCost:
+Technical Research &amp; Development Document</h1>
+<p><strong>Author:</strong> Jeremiah Williams <strong>Course:</strong>
+Project &amp; Portfolio IV - Full Sail University <strong>Date:</strong>
+December 2025</p>
+<hr />
+<h2 id="introduction">Introduction</h2>
+<p>LiveCost is a real-time cost of living intelligence application
+designed to help users estimate personalized monthly expenses across
+major US cities. The application combines machine learning predictions
+with lifestyle-based cost calculations to provide accurate, actionable
+financial insights. This document outlines the technology stack,
+research findings, development process, and lessons learned during the
+R&amp;D phase.</p>
+<h2 id="technology-overview">Technology Overview</h2>
+<h3
+id="machine-learning-scikit-learn-with-randomforestregressor">Machine
+Learning: scikit-learn with RandomForestRegressor</h3>
+<p>The core prediction engine uses scikit-learn’s RandomForestRegressor
+algorithm. Random Forest was selected after evaluating several
+alternatives:</p>
+<ul>
+<li><strong>Linear Regression:</strong> Too simplistic for capturing
+non-linear relationships between lifestyle factors and costs</li>
+<li><strong>Neural Networks:</strong> Excessive complexity for a dataset
+of 70 records; risk of overfitting</li>
+<li><strong>Gradient Boosting:</strong> Comparable performance but
+longer training times</li>
+</ul>
+<p>Random Forest provides several advantages for this use case: it
+handles mixed categorical and numerical features without extensive
+preprocessing, provides feature importance metrics for interpretability,
+and maintains robust performance with limited training data (Breiman,
+2001).</p>
+<p>The current model achieves an R² score of approximately 0.44 on the
+test set. While this indicates room for improvement, the limited dataset
+size is the primary constraint. Additional data collection would
+significantly improve prediction accuracy.</p>
+<h3 id="backend-fastapi-with-pydantic">Backend: FastAPI with
+Pydantic</h3>
+<p>FastAPI was chosen as the backend framework for its automatic API
+documentation, built-in request validation through Pydantic, and async
+support. The framework’s performance benchmarks show it handles
+significantly more requests per second than Flask while providing better
+developer experience through type hints and automatic OpenAPI generation
+(Ramírez, 2023).</p>
+<p>Pydantic models enforce strict input validation, ensuring only valid
+city codes, apartment sizes, and numerical ranges reach the prediction
+engine. This defensive approach prevents model errors from malformed
+input data.</p>
+<h3 id="frontend-react-with-material-ui">Frontend: React with
+Material-UI</h3>
+<p>The frontend utilizes React 18 with Material-UI (MUI) for component
+styling. MUI provides a consistent design language and pre-built
+accessible components, reducing development time while ensuring
+professional appearance. The component library follows Material Design
+principles, providing familiar interaction patterns for users.</p>
+<h3 id="data-visualization-chart.js-and-react-simple-maps">Data
+Visualization: Chart.js and react-simple-maps</h3>
+<p>Chart.js (via react-chartjs-2) renders the cost breakdown bar chart.
+The library offers responsive charts with minimal configuration and
+supports customization for tooltips, colors, and animations. For
+geographic visualization, react-simple-maps provides a lightweight React
+wrapper around D3-geo projections, enabling the interactive US
+affordability map without the complexity of raw D3 implementation
+(Cesal, 2022).</p>
+<h3 id="database-sqlite-with-caching-layer">Database: SQLite with
+Caching Layer</h3>
+<p>SQLite serves as the caching layer for API responses and query
+logging. This embedded database requires no server configuration, making
+it ideal for proof-of-concept development. The caching system stores
+city cost data with 24-hour expiration, reducing redundant calculations
+and demonstrating the pattern that would be used with real external APIs
+(Zillow, Numbeo) in production.</p>
+<hr />
+<h2 id="feature-lists">Feature Lists</h2>
+<h3 id="pp4-final-version-feature-list">PP4 Final Version Feature
+List</h3>
+<ol type="1">
+<li>Real-time cost predictions for 10+ US cities</li>
+<li>8 lifestyle factor inputs (housing, dining, transportation,
+entertainment, groceries, fitness, healthcare, utilities)</li>
+<li>Interactive affordability map with color-coded markers</li>
+<li>Cost breakdown visualization with bar chart</li>
+<li>Salary-based affordability calculations (30/40% thresholds)</li>
+<li>Query history and analytics dashboard</li>
+<li>City comparison feature (side-by-side analysis)</li>
+<li>Export functionality (PDF reports)</li>
+<li>User accounts with saved preferences</li>
+<li>Integration with real-time data APIs (Zillow, Numbeo)</li>
+</ol>
+<h3 id="rd-feature-list-proof-of-concept">R&amp;D Feature List (Proof of
+Concept)</h3>
+<ol type="1">
+<li><strong>UI Input Form:</strong> All 8 lifestyle questions with
+appropriate controls (dropdowns, sliders, radio buttons)</li>
+<li><strong>API Integration:</strong> FastAPI backend with /predict
+endpoint accepting JSON payloads</li>
+<li><strong>ML Prediction:</strong> RandomForestRegressor model
+returning cost breakdown</li>
+<li><strong>Data Display:</strong> Results component showing total cost
+and category breakdown</li>
+<li><strong>Visualization:</strong> Bar chart rendering cost
+distribution</li>
+<li><strong>Geographic Display:</strong> US map with city markers and
+affordability coloring</li>
+<li><strong>Caching:</strong> SQLite database storing queries and
+caching responses</li>
+<li><strong>Validation:</strong> Pydantic models enforcing input
+constraints</li>
+</ol>
+<hr />
+<h2 id="development-process">Development Process</h2>
+<h3 id="triumphs">Triumphs</h3>
+<p>The integration between React and FastAPI proceeded smoothly after
+resolving CORS configuration. The modular component architecture allowed
+parallel development of the form, results display, chart, and map
+components. Chart.js integration required minimal configuration to
+achieve professional-quality visualizations.</p>
+<p>The machine learning pipeline—from CSV data loading through model
+training to serialization with joblib—followed established patterns from
+scikit-learn documentation. Feature encoding with LabelEncoder and the
+separation of breakdown models (rent, food, transportation, utilities)
+from the main predictor provided granular cost estimates.</p>
+<h3 id="roadblocks">Roadblocks</h3>
+<p><strong>CORS Configuration:</strong> Initial API calls from React to
+FastAPI failed silently due to missing CORS middleware. Resolution
+required adding CORSMiddleware with explicit origin allowlisting for
+localhost:3000.</p>
+<p><strong>Model Encoding Mismatch:</strong> Early predictions returned
+incorrect values because the API encoded categorical features
+differently than the training script. Storing encoder mappings in
+model_metadata.json and loading them at API startup resolved this
+synchronization issue.</p>
+<p><strong>Map Projection:</strong> react-simple-maps uses [longitude,
+latitude] coordinate ordering, opposite of common convention. Several
+hours were spent debugging marker placement before discovering this
+documentation detail.</p>
+<h3 id="lessons-learned">Lessons Learned</h3>
+<ol type="1">
+<li><strong>Save encoder state:</strong> Machine learning models require
+exact feature encoding match between training and inference</li>
+<li><strong>Test CORS early:</strong> API integration issues surface
+only in browser environments, not unit tests</li>
+<li><strong>Read library documentation thoroughly:</strong> Assumptions
+about coordinate ordering caused significant debugging time</li>
+<li><strong>Start with minimal viable features:</strong> The R&amp;D
+phase validated the technology stack without overbuilding</li>
+</ol>
+<hr />
+<h2 id="technology-evaluation">Technology Evaluation</h2>
+<h3 id="feasibility-assessment">Feasibility Assessment</h3>
+<p>The proof of concept demonstrates that the planned technology stack
+functions correctly. React communicates with FastAPI, the ML model
+returns predictions, and visualizations render as expected. The project
+is feasible for full development.</p>
+<h3 id="potential-obstacles">Potential Obstacles</h3>
+<ol type="1">
+<li><strong>Data Quality:</strong> Current model R² of 0.44 indicates
+prediction accuracy limitations. Collecting more training data or
+obtaining real API data would improve performance.</li>
+<li><strong>API Rate Limits:</strong> Integration with Zillow/Numbeo
+APIs may encounter rate limiting; the caching layer mitigates this
+risk.</li>
+<li><strong>Mobile Responsiveness:</strong> Current UI is
+desktop-optimized; additional work needed for mobile layouts.</li>
+</ol>
+<h3 id="technology-boundaries">Technology Boundaries</h3>
+<p>The RandomForestRegressor cannot extrapolate beyond training data
+ranges. Cities not in the training set require either similar city
+proxies or real-time API data. The SQLite database is suitable for
+single-user development but would require migration to PostgreSQL for
+production multi-user scenarios.</p>
+<hr />
+<h2 id="conclusion">Conclusion</h2>
+<p>The LiveCost R&amp;D phase successfully validated the technology
+stack: React + Material-UI frontend, FastAPI + scikit-learn backend,
+Chart.js and react-simple-maps for visualization, and SQLite for
+caching. The proof of concept implements all planned R&amp;D features
+and identifies clear paths for improvement in the PP4 development
+phase.</p>
+<hr />
+<h2 id="references">References</h2>
+<p>Breiman, L. (2001). Random forests. <em>Machine Learning</em>, 45(1),
+5-32. https://doi.org/10.1023/A:1010933404324</p>
+<p>Cesal, A. (2022). Getting started with react-simple-maps. <em>React
+Simple Maps Documentation</em>.
+https://www.react-simple-maps.io/docs/getting-started/</p>
+<p>Ramírez, S. (2023). FastAPI documentation.
+https://fastapi.tiangolo.com/</p>
+<p>scikit-learn developers. (2023). RandomForestRegressor documentation.
+https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html</p>
+<h3 id="ai-assistance-documentation">AI Assistance Documentation</h3>
+<p>Claude (Anthropic) was used for code documentation, debugging
+assistance, and document drafting. Prompts included requests for code
+commenting, CORS troubleshooting, and technical writing guidance.</p>
+</body>
+</html>

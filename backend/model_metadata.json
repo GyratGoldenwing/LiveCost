@@ -1,0 +1,83 @@
+{
+  "encoders": {
+    "city": {
+      "classes": [
+        "Austin",
+        "Boston",
+        "Chicago",
+        "Dallas",
+        "Denver",
+        "LA",
+        "Miami",
+        "NYC",
+        "Phoenix",
+        "Seattle"
+      ],
+      "mapping": {
+        "Austin": 0,
+        "Boston": 1,
+        "Chicago": 2,
+        "Dallas": 3,
+        "Denver": 4,
+        "LA": 5,
+        "Miami": 6,
+        "NYC": 7,
+        "Phoenix": 8,
+        "Seattle": 9
+      }
+    },
+    "apartment_size": {
+      "classes": [
+        "1BR",
+        "2BR",
+        "3BR",
+        "studio"
+      ],
+      "mapping": {
+        "1BR": 0,
+        "2BR": 1,
+        "3BR": 2,
+        "studio": 3
+      }
+    },
+    "car_type": {
+      "classes": [
+        "compact",
+        "electric",
+        "sedan",
+        "suv"
+      ],
+      "mapping": {
+        "compact": 0,
+        "electric": 1,
+        "sedan": 2,
+        "suv": 3
+      }
+    }
+  },
+  "metrics": {
+    "train": {
+      "rmse": 267.5093942848176,
+      "r2": 0.9318404402328643,
+      "mae": 220.87139880952387
+    },
+    "test": {
+      "rmse": 720.2168462023233,
+      "r2": 0.43871726249398413,
+      "mae": 660.175654761905
+    }
+  },
+  "feature_cols": [
+    "city_encoded",
+    "apartment_size_encoded",
+    "dining_frequency",
+    "car_type_encoded",
+    "commute_miles"
+  ],
+  "categories": [
+    "rent",
+    "food",
+    "transportation",
+    "utilities"
+  ]
+}
